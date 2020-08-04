@@ -1,11 +1,14 @@
 package com.example.demo.util;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
+import javax.crypto.*;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
+import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 
 public class DesEncrypter {
@@ -16,13 +19,15 @@ public class DesEncrypter {
     /**
      * 将用户的apikey传入
      *
-     * @throws Exception
-     * @author 曹轩
+     * @param apiKey
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws NoSuchPaddingException
+     * @throws InvalidAlgorithmParameterException
+     * @throws InvalidKeyException
      */
-    public DesEncrypter(String apiKey) throws Exception {
-        /**
-         * 设置算法为md5和DES加解密
-         */
+    public DesEncrypter(String apiKey) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidAlgorithmParameterException, InvalidKeyException {
+        // 设置算法为md5和DES加解密
         int iterationCount = 2;
         KeySpec keySpec = new PBEKeySpec(apiKey.toCharArray(), salt, iterationCount);
         SecretKey key = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(keySpec);
@@ -36,31 +41,30 @@ public class DesEncrypter {
     }
 
     /**
+     * 加密str字符串
+     *
      * @param str
      * @return
-     * @throws Exception String
-     * @Description(功能描述) :  加密str字符串
-     * @author(作者) ：  曹轩
-     * @date (开发日期)          :  2016年6月24日 上午11:43:15
+     * @throws BadPaddingException
+     * @throws IllegalBlockSizeException
      */
-    public String encrypt(String str) throws Exception {
+    public String encrypt(String str) throws BadPaddingException, IllegalBlockSizeException {
         //设置编码utf-8
-        str = new String(str.getBytes(), "UTF-8");
+        str = new String(str.getBytes(), StandardCharsets.UTF_8);
         return Base64.encode(ecipher.doFinal(str.getBytes()));
     }
 
     /**
+     * 解密字符串str
+     *
      * @param str
      * @return
-     * @throws Exception String
-     * @Description(功能描述) :  解密字符串str
-     * @author(作者) ：  曹轩
-     * @date (开发日期)          :  2016年6月24日 上午11:45:00
+     * @throws BadPaddingException
+     * @throws IllegalBlockSizeException
      */
-    public String decrypt(String str) throws Exception {
-        return new String(dcipher.doFinal(Base64.decode(str)), "UTF-8");
+    public String decrypt(String str) throws BadPaddingException, IllegalBlockSizeException {
+        return new String(dcipher.doFinal(Base64.decode(str)), StandardCharsets.UTF_8);
     }
-
 
     public static void main(String[] args) throws Exception {
         String apiKey = "12345678";

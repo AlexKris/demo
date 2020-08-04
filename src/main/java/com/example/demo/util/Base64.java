@@ -6,10 +6,7 @@ import java.io.Writer;
 
 /**
  * 加密操作
- *
- * @author Lyq
  */
-
 public class Base64 {
 
     private static final char S_BASE64CHAR[] = {'A', 'B', 'C', 'D', 'E', 'F',
@@ -18,7 +15,7 @@ public class Base64 {
             'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
             't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5',
             '6', '7', '8', '9', '+', '/'};
-    //	private static final char S_BASE64PAD = 61;
+
     private static final byte S_DECODETABLE[];
 
     static {

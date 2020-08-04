@@ -1,5 +1,7 @@
 package com.example.demo.y2019.m05.d13;
 
+import com.example.demo.util.DesEncrypter;
+
 public class TestShiroException {
     public static void main(String[] args) {
         try {
