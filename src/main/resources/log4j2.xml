@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="info">
+    <Properties>
+        <Property name="LOG_HOME">./logs</Property>
+        <Property name="pattern">{"thread":"%T","level":"%p","time":"%-d{yyyy-MM-dd HH:mm:ss,SSS}","content":%m}%n
+        </Property>
+        <!--<Property name="scheduleCron">0 0 23 * * ?</Property>-->
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch) -->
+            <!-- <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"
+                /> -->
+            <!-- 输出日志的格式 -->
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+        </Console>
+        <!--RollingRandomAccessFile 默认日志文件写入策略为异步刷盘，
+        引出一个缓冲区（buffer）的概念，RollingRandomAccessFile 会将日志信息先写入到缓冲区，
+        然后缓冲区满后刷到磁盘，并清空缓冲区，默认缓冲区的大小在8-256kb，
+        具体大小需要自己设置，所以说不会立即产生日志-->
+        <RollingRandomAccessFile name="Info"
+                                 immediateFlush="true" fileName="${LOG_HOME}/trace-info.log"
+                                 filePattern="${LOG_HOME}/trace-info-%d{yyyy-MM-dd}.gz">
+            <!-- %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间 %p : 日志输出格式 %c : logger的名称
+                %m : 日志内容，即  %n : 换行符 %C : Java类名 %L : 日志输出所在行数 %M
+                : 日志输出所在方法名 hostName : 本地机器名 hostAddress : 本地ip地址 -->
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+            <Policies>
+                <!--<CronTriggeringPolicy schedule="${scheduleCron}"/>-->
+                <!--按时间滚动-->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <!-- &lt;!&ndash;按大小滚动&ndash;&gt;
+                 <SizeBasedTriggeringPolicy size="200 MB"/>-->
+            </Policies>
+
+            <!-- 最多备份30天以内的日志，此处为策略限制，Delete中可以按自己需要用正则表达式编写 -->
+            <!-- DefaultRolloverStrategy字段中加入max=“30”经测试是配合SizeBasedTriggeringPolicy限制%i的存在数量，并没有发现是网上流传的是最多保存多少个文件的限制，也或许是我写的有问题 -->
+            <!-- <DefaultRolloverStrategy>
+                 <Delete basePath="${LOG_HOME}" maxDepth="1">
+                     <IfFileName glob="ServerManager-Info.log.*.gz"/>
+                     <IfLastModified age="30d"/>
+                 </Delete>
+             </DefaultRolloverStrategy>-->
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="Error"
+                                 immediateFlush="true" fileName="${LOG_HOME}/trace-error.log"
+                                 filePattern="${LOG_HOME}/trace-error-%d{yyyy-MM-dd}.gz">
+            <!-- %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间 %p : 日志输出格式 %c : logger的名称
+                %m : 日志内容，即 %n : 换行符 %C : Java类名 %L : 日志输出所在行数 %M
+                : 日志输出所在方法名 hostName : 本地机器名 hostAddress : 本地ip地址 -->
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+            <Policies>
+                <!--<CronTriggeringPolicy schedule="${scheduleCron}"/>-->
+                <!--按时间滚动-->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <!-- &lt;!&ndash;按大小滚动&ndash;&gt;
+                 <SizeBasedTriggeringPolicy size="200 MB"/>-->
+            </Policies>
+            <!-- 最多备份30天以内的日志，此处为策略限制，Delete中可以按自己需要用正则表达式编写 -->
+            <!-- DefaultRolloverStrategy字段中加入max=“30”经测试是配合SizeBasedTriggeringPolicy限制%i的存在数量，并没有发现是网上流传的是最多保存多少个文件的限制，也或许是我写的有问题 -->
+            <!-- <DefaultRolloverStrategy>
+                 <Delete basePath="${LOG_HOME}" maxDepth="1">
+                     <IfFileName glob="ServerManager-Info.log.*.gz"/>
+                     <IfLastModified age="30d"/>
+                 </Delete>
+             </DefaultRolloverStrategy>-->
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMisMatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="Warn"
+                                 immediateFlush="true" fileName="${LOG_HOME}/trace-warn.log"
+                                 filePattern="${LOG_HOME}/trace-warn-%d{yyyy-MM-dd}.gz">
+            <!-- %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间 %p : 日志输出格式 %c : logger的名称
+                %m : 日志内容，即  %n : 换行符 %C : Java类名 %L : 日志输出所在行数 %M
+                : 日志输出所在方法名 hostName : 本地机器名 hostAddress : 本地ip地址 -->
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+            <Policies>
+                <!--<CronTriggeringPolicy schedule="${scheduleCron}"/>-->
+                <!--按时间滚动-->
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <!-- &lt;!&ndash;按大小滚动&ndash;&gt;
+                 <SizeBasedTriggeringPolicy size="200 MB"/>-->
+            </Policies>
+            <!-- 最多备份30天以内的日志，此处为策略限制，Delete中可以按自己需要用正则表达式编写 -->
+            <!-- DefaultRolloverStrategy字段中加入max=“30”经测试是配合SizeBasedTriggeringPolicy限制%i的存在数量，并没有发现是网上流传的是最多保存多少个文件的限制，也或许是我写的有问题 -->
+            <!-- <DefaultRolloverStrategy>
+                 <Delete basePath="${LOG_HOME}" maxDepth="1">
+                     <IfFileName glob="ServerManager-Info.log.*.gz"/>
+                     <IfLastModified age="30d"/>
+                 </Delete>
+             </DefaultRolloverStrategy>-->
+            <Filters>
+                <!--将ERROR及其以上级别的日志给DENY掉-->
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <!--ACCEPT warn级别的日志-->
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <logger name="org.spring" level="error" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="org.springframework" level="error" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="org.apache.zookeeper" level="error" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="com.alibaba.dubbo" level="error" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="org.spring" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="org.springframework" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="org.apache.zookeeper" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="com.alibaba.dubbo" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="druid.sql" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="druid.sql.DataSource" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="druid.sql.Connection" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="druid.sql.Statement" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="druid.sql.ResultSet" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="wsclient" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="com.ibatis" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="com.ibatis.common.jdbc.ScriptRunner" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="java.sql.Connection" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="java.sql.Statement" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="java.sql.PreparedStatement" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <logger name="org.I0Itec.zkclient" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </logger>
+        <!--<logger name="com.caxins.themis" level="debug" additivity="false">-->
+        <!--<appender-ref ref="Console"/>-->
+        <!--<appender-ref ref="Info"/>-->
+        <!--<appender-ref ref="Warn"/>-->
+        <!--<appender-ref ref="Error"/>-->
+        <!--</logger>-->
+        <root level="info">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Info"/>
+            <appender-ref ref="Warn"/>
+            <appender-ref ref="Error"/>
+        </root>
+    </Loggers>
+
+</configuration>
