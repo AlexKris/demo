@@ -1,4 +1,4 @@
-package com.example.demo.study.datastructure.linkedlist;
+package com.example.demo.study.geektime.datastructure.linkedlist;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

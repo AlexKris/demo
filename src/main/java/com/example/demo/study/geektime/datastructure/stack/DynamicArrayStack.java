@@ -1,4 +1,4 @@
-package com.example.demo.study.datastructure.stack;
+package com.example.demo.study.geektime.datastructure.stack;
 
 /**
  * 支持动态扩容的顺序栈

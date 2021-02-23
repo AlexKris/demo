@@ -1,4 +1,4 @@
-package com.example.demo.study.algorithm;
+package com.example.demo.study.geektime.algorithm;
 
 /**
  * 时间复杂度

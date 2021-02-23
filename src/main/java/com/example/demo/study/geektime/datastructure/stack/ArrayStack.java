@@ -1,4 +1,4 @@
-package com.example.demo.study.datastructure.stack;
+package com.example.demo.study.geektime.datastructure.stack;
 
 import lombok.ToString;
 

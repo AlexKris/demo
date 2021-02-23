@@ -1,4 +1,4 @@
-package com.example.demo.study.datastructure.queue;
+package com.example.demo.study.geektime.datastructure.queue;
 
 import java.io.Serializable;
 
