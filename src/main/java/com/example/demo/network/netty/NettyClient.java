@@ -16,9 +16,11 @@ import java.util.Date;
  */
 public class NettyClient {
     public static void main(String[] args) throws InterruptedException {
+        // 客户端启动引导类/辅助类
         Bootstrap bootstrap = new Bootstrap();
         NioEventLoopGroup group = new NioEventLoopGroup();
 
+        // 指定线程模型
         bootstrap.group(group)
                 .channel(NioSocketChannel.class)
                 .handler(new ChannelInitializer<Channel>() {
@@ -28,6 +30,7 @@ public class NettyClient {
                     }
                 });
 
+        // 建立连接
         Channel channel = bootstrap.connect("127.0.0.1", 8000).channel();
 
         while (true) {

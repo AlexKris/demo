@@ -16,12 +16,14 @@ import io.netty.handler.codec.string.StringDecoder;
  */
 public class NettyServer {
     public static void main(String[] args) {
+        // 服务端启动引导类/辅助类
         ServerBootstrap serverBootstrap = new ServerBootstrap();
 
-        // 接受新连接线程，主要负责创建新连接
+        // 接受新连接的线程，主要负责创建新连接
         NioEventLoopGroup boss = new NioEventLoopGroup();
         // 负责读取数据的线程，主要用于读取数据以及业务逻辑处理
         NioEventLoopGroup worker = new NioEventLoopGroup();
+        // 配置线程组，确定线程模型
         serverBootstrap.group(boss, worker)
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
@@ -35,6 +37,6 @@ public class NettyServer {
                             }
                         });
                     }
-                }).bind(8000);
+                }).bind(8000);// 绑定端口
     }
 }
