@@ -66,10 +66,11 @@ public class NettyServerDemo {
                     protected void initChannel(NioSocketChannel ch) throws Exception {
 //                        Attribute<Object> clientKey = ch.attr(AttributeKey.newInstance("clientKey"));
 //                        System.out.println("clientKey = " + clientKey);
+                        // 指定连接数据读写逻辑
+                        ch.pipeline().addLast(new FirstServerHandler());
                     }
                 });
-
-        bind(serverBootstrap, 1000);
+        bind(serverBootstrap, 8000);
     }
 
     private static void bind(final ServerBootstrap serverBootstrap, final int port) {

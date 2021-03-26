@@ -52,10 +52,14 @@ public class NettyClientDemo {
                 .handler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
+                        // 指定连接数据读写逻辑
+                        // ch.pipeline() 返回的是和这条连接相关的逻辑处理器，采用了责任链模式
+                        // addLast() 添加一个逻辑处理器，在客户端建立连接成功后，向服务端写数据
+                        ch.pipeline().addLast(new FirstClientHandler());
                     }
                 });
         // 建立连接
-        connect(bootstrap, "juejin.im", 80, MAX_RETRY);
+        connect(bootstrap, "127.0.0.1", 8000, MAX_RETRY);
     }
 
     private static void connect(Bootstrap bootstrap, String host, int port, int retry) {
