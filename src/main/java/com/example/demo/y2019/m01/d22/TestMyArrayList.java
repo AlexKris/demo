@@ -7,12 +7,12 @@ import java.util.UUID;
  */
 public class TestMyArrayList {
     public static void main(String[] args) {
-        MyArrayList myArrayList = new MyArrayList();
-        myArrayList.add("宁小葱");
-        System.out.println(myArrayList);
-        myArrayList.set(0, "宁大葱");
-        System.out.println(myArrayList);
-        System.out.println(myArrayList.size());
+        MyList myList = new MyList();
+        myList.add("宁小葱");
+        System.out.println(myList);
+        myList.set(0, "宁大葱");
+        System.out.println(myList);
+        System.out.println(myList.size());
         UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
     }

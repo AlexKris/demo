@@ -3,9 +3,9 @@ package com.example.demo.y2018.m10.d29;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Test1 {
+public class TestMapThroughMethod {
     public static void main(String[] args) {
-        Map<String, Object> map = new HashMap<String, Object>(16);
+        Map<String, Object> map = new HashMap<>(16);
         map.put("test", "test1");
         System.out.println(map);
         map.put("test", "test2");

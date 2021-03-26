@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestCollection {
+public class TestListMap {
     public static void main(String[] args) {
         Map<String, Object> map = new HashMap<>();
         map.put("i", "9132.1564");

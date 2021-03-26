@@ -3,7 +3,7 @@ package com.example.demo.y2018.m10.d24;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Test1 {
+public class TestMapNullValue {
     public static void main(String[] args) {
         String car = "兰博基尼";
         String veh = null;

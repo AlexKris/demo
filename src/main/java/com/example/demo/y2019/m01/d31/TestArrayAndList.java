@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TestArrayList {
+public class TestArrayAndList {
     public static void main(String[] args) {
         List<String> arrayList = new ArrayList<String>();
         arrayList.add("1");

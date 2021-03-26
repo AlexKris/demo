@@ -2,7 +2,7 @@ package com.example.demo.y2019.m05.d29;
 
 import com.example.demo.util.NullUtils;
 
-public class Test {
+public class TestSplit {
     public static void main(String[] args) {
         String menuIds1 = "132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,160,161,148,149,150,151,153,154,159;1,2,3,131,152";
         String menuIds2 = "1,2,3,131,152,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,160,161,148,149,150,151,153,154,159;";

@@ -1,6 +1,6 @@
 package com.example.demo.y2019.m01.d24;
 
-public class Aclass extends AbstractClass {
+public class SubClass extends AbstractClass {
     @Override
     String test() {
         return null;

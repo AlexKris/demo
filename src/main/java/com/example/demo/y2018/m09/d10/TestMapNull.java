@@ -7,7 +7,7 @@ import java.util.Map;
  * 测试map.get(null)
  * @author Alex
  */
-public class test2 {
+public class TestMapNull {
     public static void main(String[] args) {
         Map<String, String> map = new HashMap<>();
         map.put("CA", "1");

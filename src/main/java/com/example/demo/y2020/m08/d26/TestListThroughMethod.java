@@ -3,7 +3,7 @@ package com.example.demo.y2020.m08.d26;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestMethod {
+public class TestListThroughMethod {
     public static void main(String[] args) {
         List<String> strings = new ArrayList<>();
         testMethod(strings);

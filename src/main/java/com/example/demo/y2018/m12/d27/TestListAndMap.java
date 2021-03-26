@@ -9,7 +9,7 @@ import java.util.Map;
  * 测试集合
  * @author Alex
  */
-public class TestCollection {
+public class TestListAndMap {
     public static void main(String[] args) {
         List<String> list = new ArrayList<String>();
         list.add("String1");

@@ -5,7 +5,7 @@ import com.example.demo.util.NullUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class TestSomeEnum {
     public static void main(String[] args) {
         String class5State = RankClassificationEnum.MSRANK_PARAM_05.getCode();
         List<String> list = new ArrayList<>();

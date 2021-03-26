@@ -2,7 +2,7 @@ package com.example.demo.y2019.m01.d30;
 
 import java.util.ArrayList;
 
-public class Test {
+public class TestStatic {
     private static ArrayList arrayList;
     { }
     static {

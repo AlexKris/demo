@@ -3,7 +3,7 @@ package com.example.demo.y2018.m12.d28;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Test1 {
+public class TestSet {
     public static void main(String[] args) {
         People people = new People();
         people.setName("宁");

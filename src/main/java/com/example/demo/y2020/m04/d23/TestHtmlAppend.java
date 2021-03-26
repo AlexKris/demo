@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.util.*;
 
-public class TestEs {
+public class TestHtmlAppend {
     public static void main(String[] args) {
 //        String param = "{query:{bool:{must_not:[{match:{APPL_CDE:\"202004171300017984643\"}},{match:{ID_NO:\"230119198610040179\"}}],must:[{match:{REPEAT_VAL:\"18041116666\"}},{match:{REPEAT_TYP:\"05\"}}]}}}";
 //        String json = JSON.parseObject(param).toString();

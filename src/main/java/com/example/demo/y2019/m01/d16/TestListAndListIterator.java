@@ -1,10 +1,11 @@
 package com.example.demo.y2019.m01.d16;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class TestCollection {
+public class TestListAndListIterator {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
         list.add("1");

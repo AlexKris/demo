@@ -8,7 +8,7 @@ import java.util.Iterator;
  * @param <E>
  * @author Alex
  */
-public class MyArrayList<E> implements Iterable<E> {
+public class MyList<E> implements Iterable<E> {
     private static final int DEFAULT_CAPACITY = 10;
     /**
      * 集合大小
@@ -22,7 +22,7 @@ public class MyArrayList<E> implements Iterable<E> {
     /**
      * 初始化
      */
-    public MyArrayList() {
+    public MyList() {
         clear();
     }
 
@@ -130,13 +130,13 @@ public class MyArrayList<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new ArrayListIterator();
+        return new MyListIterator();
     }
 
     /**
      * 实现Iterator接口的内部类
      */
-    private class ArrayListIterator implements Iterator<E> {
+    private class MyListIterator implements Iterator<E> {
         private int current = 0;
 
         @Override
@@ -151,7 +151,7 @@ public class MyArrayList<E> implements Iterable<E> {
 
         @Override
         public void remove() {
-            MyArrayList.this.remove(--current);
+            MyList.this.remove(--current);
         }
     }
 }

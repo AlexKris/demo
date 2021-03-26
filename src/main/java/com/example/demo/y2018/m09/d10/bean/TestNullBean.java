@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * @author Alex
  */
-public class Test3bean implements Serializable {
+public class TestNullBean implements Serializable {
     private static final long serialVersionUID = 8495932453985737902L;
     private String name;
     private String age;
@@ -44,7 +44,7 @@ public class Test3bean implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Test3bean test3bean = (Test3bean) o;
+        TestNullBean test3bean = (TestNullBean) o;
         return Objects.equals(name, test3bean.name) &&
                 Objects.equals(age, test3bean.age) &&
                 Objects.equals(address, test3bean.address);
