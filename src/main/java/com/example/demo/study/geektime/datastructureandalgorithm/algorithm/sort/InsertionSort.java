@@ -29,4 +29,32 @@ public class InsertionSort {
             a[j + 1] = value;// 插入数据
         }
     }
+
+    // 查询插入位置时，从头至尾搜索
+    private static void fromStartToEnd(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            int value = a[i];
+
+            int[] tmp = new int[2];
+            int change = i;
+            for (int j = 0; j < i; j++) {
+                if (value >= a[j]) {
+                    continue;
+                }
+
+                int index = j % 2;
+                if (change == i) {
+                    tmp[Math.abs(index - 1)] = a[j];
+                    change = j;
+                }
+                tmp[index] = a[j + 1];
+                if (0 == index) {
+                    a[j + 1] = tmp[index + 1];
+                } else {
+                    a[j + 1] = tmp[index - 1];
+                }
+            }
+            a[change] = value;
+        }
+    }
 }
