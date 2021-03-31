@@ -23,6 +23,7 @@ public class BubbleSort {
 
     private static void bubbleSort(int[] a) {
         if (a.length <= 1) return;
+
         for (int i = 0; i < a.length; i++) {
             // 提前退出冒泡排序的标识位
             boolean flag = false;
@@ -35,6 +36,32 @@ public class BubbleSort {
                     flag = true;// 表示有数据交换
                 }
             }
+            if (!flag) break;// 无数据交换，提前退出
+        }
+    }
+
+    // 冒泡排序改进:在每一轮排序后记录最后一次元素交换的位置,作为下次比较的边界,对于边界外的元素在下次循环中无需比较.
+    private static void bubbleSort2(int[] a) {
+        if (a.length <= 1) return;
+
+        // 最后一次交换的位置
+        int lastExchange = 0;
+        // 无序数据的边界，每次只需比较到这里即可退出
+        int sortBorder = a.length - 1;
+        for (int i = 0; i < a.length; i++) {
+            // 提前退出冒泡排序的标识位
+            boolean flag = false;
+            for (int j = 0; j < sortBorder; j++) {
+                if (a[j] > a[j + 1]) {
+                    // 交换
+                    int tmp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = tmp;
+                    flag = true;// 表示有数据交换
+                    lastExchange = j;// 更新最后一次交换的位置
+                }
+            }
+            sortBorder = lastExchange;
             if (!flag) break;// 无数据交换，提前退出
         }
     }
