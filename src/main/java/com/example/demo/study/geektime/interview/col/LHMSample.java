@@ -36,7 +36,7 @@ public class LHMSample {
 
         accessOrderedMap.forEach((k, v) -> System.out.println(k + ":" + v));
 
-        // 触发删除`
+        // 触发删除
         accessOrderedMap.put("Project4", "Mission Control");
         System.out.println("Oldest entry should be removed:");
 
